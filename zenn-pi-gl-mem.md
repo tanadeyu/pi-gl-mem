@@ -80,6 +80,8 @@ your-project/.pi-gl-mem/
 echo ".pi-gl-mem/" >> .gitignore
 ```
 
+> 📌 **注意**: git の操作（add/commit/push等）はユーザーが明示的に指示するまで実行しないでください。ファイル編集・作成のみ行い、git操作はユーザー指示を待つこと。
+
 `pi_gl_settings.json` では各プロジェクトの設定を管理します。
 
 ```json
