@@ -96,6 +96,8 @@ pi-gl-mem-init
 > echo ".pi-gl-mem/" >> .gitignore
 > ```
 
+> 💡 **再起動について**: `write_*` / `read_*` ツールはインストール直後から即座に使えます。グローバル記憶やローカル記憶が AI の指示文（systemPrompt）に**自動注入**されるのは次回 pi 起動時からです。
+
 ## アンインストール
 
 ```bash
