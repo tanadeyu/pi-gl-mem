@@ -1,0 +1,36 @@
+{
+  "name": "pi-local-mem",
+  "version": "1.0.0",
+  "description": "Project-local memory extension for pi coding agent — independent, self-contained, zero dependency on pi-mem",
+  "main": "pi-local-mem.ts",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "pi-coding-agent",
+    "memory",
+    "local-memory"
+  ],
+  "license": "MIT",
+  "author": "tanadeyu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanadeyu/pi-local-mem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tanadeyu/pi-local-mem/issues"
+  },
+  "homepage": "https://github.com/tanadeyu/pi-local-mem#readme",
+  "pi": {
+    "extensions": [
+      "./pi-local-mem.ts"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@sinclair/typebox": "*"
+  }
+}

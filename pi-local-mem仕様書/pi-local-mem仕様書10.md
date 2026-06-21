@@ -8,15 +8,25 @@
 | pi-local-mem.ts | v1.0.0 (2026-06-20) | 本プラグイン（§8コードブロックと完全一致） |
 - injectGlobal 遮断は **pi-mem が `context` イベントで `<pi-mem-injected>` を注入する仕様** に依存する。pi-mem 側の注入方式が変わった場合は§5のフィルタ再検討が必要。
 - packages 順序は `npm:@haha1903/pi-mem` → `pi-local-mem.ts` の順を前提（pi-mem が前でないと後段フィルタが効かない）。
+### 方法A（推奨）: GitHub リポジトリ直指定
+```bash
+pi uninstall pi-local-mem        # 既存登録の除去
+pi install https://github.com/tanadeyu/pi-local-mem
+```
+元ファイルの削除・移動制限なし。GitHub上の package.json を参照して拡張機能をロードする。
+
+### 方法B（従来）: ローカルファイル参照
 ```bash
 pi uninstall pi-local-mem        # 既存登録の除去（参照先変更時・再インストール時に必須）
 pi install ./pi-local-mem.ts
 ```
-- `pi install` は参照登録のみ。インストール後も元ファイルは削除・移動不可。
+`pi install` は参照登録のみ。インストール後も元ファイルは削除・移動不可。
+
+### 共通注意事項
 - 参照先を変える際は `install` 単独だと旧エントリが `~/.pi/agent/settings.json` の packages に残ることがあるため、**一度 `uninstall` してから `install` すること**。
 - `pi uninstall` は `.pi-local-mem/` フォルダを削除しない（データ保護）。完全リセットは `rm -rf ./.pi-local-mem` → pi起動で新形式クリーン生成。
-- **`pi uninstall pi-local-mem` が「No matching package found」で失効するケースあり**（ローカルファイル参照登録時・パッケージ名解決不可）。この場合は `~/.pi/agent/settings.json` の `packages` 配列を直接編集して旧エントリを削除すること。編集後は `python3 -c "import json; json.load(open('~/.pi/agent/settings.json'.replace('~', '$HOME')))"` 等でJSON正当性を確認。
-- **重複登録の予防**: `pi install` はパス単位で登録されるため、異なるパス（例: `/tmp/pi-local-mem.ts` と `/mnt/c/.../pi-local-mem.ts`）は別エントリとして両方残り、起動時に4ツール衝突エラー（`Tool "write_local_memory" conflicts with ...`）が発生する。インストール先を変えるときは install 後に必ず `grep local-mem ~/.pi/agent/settings.json` で旧エントリの残存を確認すること。
+- **ローカルファイル参照の場合の注意**: `pi uninstall pi-local-mem` が「No matching package found」で失効するケースあり（パッケージ名解決不可）。この場合は `~/.pi/agent/settings.json` の `packages` 配列を直接編集して旧エントリを削除すること。GitHub方式ではこの問題は発生しない。
+- **重複登録の予防**: `pi install` はパス単位で登録されるため、異なるパスは別エントリとして両方残り衝突エラーが発生する。インストール先を変えるときは `grep local-mem ~/.pi/agent/settings.json` で旧エントリの残存を確認すること。
 ## 0. 経緯（9→10 の変更点）
 仕様書9は設計仕様（実装コード未記載）だった。本書は仕様書9の設計を確定させ、**実装コード全文** を含む最終仕様とする。
 方針は仕様書9で確定した **方式B（独立実装・コピー持参）**: pi-memへのimport依存ゼロ、pi-local-mem.ts単体で4ファイル＋4ツールを完結。将来pi-memが消えても/使わなくても同等機能を維持。本書は「pi-memの内容も理解でき、pi-memなしでも新規に同じ機能を作れる」よう、pi-mem側の構造とローカル側の実装を対比できる形でまとめる。

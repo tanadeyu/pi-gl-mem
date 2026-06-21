@@ -1,22 +1,44 @@
 # pi-local-mem
 
-pi（pi-coding-agent）用の**プロジェクト専用ローカル記憶拡張**。グローバル拡張の [pi-mem](https://github.com/haha1903/pi-mem) と互換の4ツール・4ファイル構成を、pi-memへの依存なしに自己完結で実現します。
+pi（pi-coding-agent）用の**プロジェクト専用ローカル記憶拡張**。
 
-## 特徴
-- **方式B（独立実装）**: pi-memへのimport依存ゼロ・必要な関数は内部にコピー持参
-- **`_local` postfix**: pi-memとの命名衝突を完全回避
-- **完全分離**: グローバル(pi-mem)と8ファイルは一切交差しない
-- **軽量**: dashboard/LLM要約/git autocommit等の重機能は除外
+> **実験段階**: 作り込みは荒く、動作は自己責任でお願いします。最低限の動作確認はしていますが、エッジケースでの振る舞いは保証しません。
 
-## ツール（4つ・pi-mem互換）
-| ツール | 互換先 | 機能 |
+## pi-mem との関係
+
+| | pi-mem（@haha1903/pi-mem） | pi-local-mem（本拡張） |
 |---|---|---|
-| `write_local_memory` | memory_write | long_term/daily/note・append/overwrite・タイムスタンプ+セッションID自動付与 |
-| `read_local_memory` | memory_read | long_term/scratchpad/daily/note/list |
-| `local_scratchpad` | scratchpad | add/done/undo/clear_done/list |
-| `search_local_memory` | memory_search | 大文字小文字無視の部分一致grep |
+| 役割 | **グローバル記憶**（PC全体） | **ローカル記憶**（プロジェクト単位） |
+| インストール | npm パッケージ | GitHub リポジトリ直指定 |
+| ツール名 | memory_write / memory_read / ... | write_local_memory / read_local_memory / ... |
+| 自動ロード | グローバル MEMORY.md + 日次ログ | ローカル MEMORY.md + 日次ログ |
+
+**共存可能**。両方をインストールするとグローバル記憶とローカル記憶が同時にAIに読まれ、ツール名で書き分けられます。分離は設定フラグ（injectGlobal）で制御できます。
+
+## 使い方
+
+AI に「覚えておいて」と伝えると、このプロジェクトのローカル記憶に自動保存されます。ツール名はすべて `_local` 付きで、グローバル（pi-mem）と混同しません：
+
+| 操作 | コマンド |
+|---|---|
+| 長期記憶に保存 | `write_local_memory(target="long_term")` |
+| 日記に保存 | `write_local_memory(target="daily")` |
+| ノートに保存 | `write_local_memory(target="note", filename="...")` |
+| 記憶を読む | `read_local_memory(target="long_term")` |
+| 検索 | `search_local_memory(query="...")` |
+| チェックリスト | `local_scratchpad(action="add", text="...")` |
+
+## ツール一覧
+
+| ツール | 機能 |
+|---|---|
+| `write_local_memory` | long_term/daily/note に保存。append/overwrite。タイムスタンプ+セッションID自動付与 |
+| `read_local_memory` | long_term/scratchpad/daily/note/list を読む |
+| `local_scratchpad` | チェックリスト管理（add/done/undo/clear_done/list） |
+| `search_local_memory` | 全文検索（大文字小文字無視の部分一致） |
 
 ## 記憶領域（プロジェクトフォルダ直下に自動展開）
+
 ```
 .pi-local-mem/
   ├─ MEMORY_local.md            # 長期記憶（自動ロード）
@@ -27,24 +49,47 @@ pi（pi-coding-agent）用の**プロジェクト専用ローカル記憶拡張*
 ```
 
 ## インストール
+
+### 推奨: GitHub リポジトリ直指定
+```bash
+pi install https://github.com/tanadeyu/pi-local-mem
+```
+元ファイルの削除・移動制限なし。GitHub 上の package.json を参照して拡張機能をロードします。
+
+### 従来: ローカルファイル参照
 ```bash
 pi install /path/to/pi-local-mem.ts
 ```
-`pi install` は参照登録のみ（コピーなし）。元ファイルを削除/移動すると壊れるため配置は固定。
+`pi install` は参照登録のみ（コピーなし）。元ファイルを削除/移動すると壊れるため配置は固定。ローカルファイル参照では `pi uninstall` が名前解決できず「No matching package found」となる場合があります。その場合は `~/.pi/agent/settings.json` の `packages` 配列を直接編集してください。
 
 ## 設定
+
 `.pi-local-mem/pi_memory_local.json`:
 ```json
 {"injectLocal": true, "injectGlobal": true}
 ```
-- `injectGlobal: false` で `<pi-mem-injected>` を後段フィルタで除去（ローカル専用表示）
-- 前提: settings.json の packages 順序で pi-mem が pi-local-mem より前であること
+
+- `injectGlobal: false` で pi-mem のグローバル記憶注入を遮断（ローカル専用表示）
+- 前提: packages 順序で pi-mem が pi-local-mem より前であること
 
 ## ドキュメント
-- [`メンテナンス.md`](メンテナンス.md) — 運用・保守・トラブル対応
-- [`pi-local-mem仕様書/`](pi-local-mem仕様書/) — 設計仕様書 01-10（10が最終版）
+
+- [`設計思想とpi-core_pi-mem_pi-local-mem連携.md`](設計思想とpi-core_pi-mem_pi-local-mem連携.md) — 設計思想・tool useの仕組み・3者の連携
+- [`pi-local-mem解説書.md`](pi-local-mem解説書.md) — ソースコードの初心者向け解説
 
 ## 動作確認環境
+
 - pi 0.79.8
 - @haha1903/pi-mem 1.0.1
 - pi-local-mem.ts v1.0.0 (2026-06-20)
+
+## ライセンス
+
+MIT License
+
+Copyright (c) 2026 tanadeyu
+
+本拡張は [@haha1903/pi-mem](https://github.com/haha1903/pi-mem)（MIT License, Copyright (c) 2026 jo-inc）とは**独立した別実装**です。pi-mem のコードを流用しておらず、API仕様に準拠した独自開発です。
+
+---
+*本ドキュメント中で `~` と表記されているパスは、ユーザーのホームディレクトリ（例: Linux `/home/ユーザー名` / macOS `/Users/ユーザー名` / Windows `C:\Users\ユーザー名`）を示します。*
