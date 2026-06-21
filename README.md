@@ -1,6 +1,9 @@
 # pi-gl-mem
 
 pi（pi-coding-agent）用の **グローバル＋ローカル記憶拡張**。
+グローバル、ローカルでの記憶用ドキュメント生成と自動参照の機能拡張ツールです。
+記憶活用は、AI任せになるので、完全動作ではないです。
+AIの記憶ファイルへの保存、AIの記憶ファイル参照は明示的に指定することで実行確度を上げることができます。
 
 > **実験段階**: 動作は自己責任でお願いします。最低限の動作確認はしていますが、エッジケースでの振る舞いは保証しません。
 
@@ -117,20 +120,6 @@ rm -rf ./.pi-gl-mem   # データも削除する場合
 |------|--------|------|
 | `injectLocal` | `true` | ローカル記憶をAIに読ませる |
 | `injectGlobal` | `true` | グローバル記憶をAIに読ませる |
-
-## pi-local-mem からの移行
-
-既存の `.pi-local-mem/` がある場合、以下で内容を引き継げます：
-
-```bash
-mv .pi-local-mem .pi-gl-mem
-cd .pi-gl-mem
-mv MEMORY_local.md MEMORY.md
-mv SCRATCHPAD_local.md SCRATCHPAD.md
-mv daily_local daily
-mv notes_local notes
-mv pi_memory_local.json pi_gl_settings.json
-```
 
 ## ドキュメント
 
