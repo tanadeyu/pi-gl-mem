@@ -152,5 +152,4 @@ mv pi_memory_local.json pi_gl_settings.json
 ## ライセンス
 
 MIT License
-
 Copyright (c) 2026 tanadeyu
