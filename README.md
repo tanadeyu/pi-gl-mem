@@ -82,7 +82,5 @@ MIT License
 
 Copyright (c) 2026 tanadeyu
 
-本拡張は [@haha1903/pi-mem](https://github.com/haha1903/pi-mem)（MIT License, Copyright (c) 2026 jo-inc）とは**独立した別実装**です。pi-mem のコードを流用しておらず、API仕様に準拠した独自開発です。
-
 ---
 *本ドキュメント中で `~` と表記されているパスは、ユーザーのホームディレクトリ（例: Linux `/home/ユーザー名` / macOS `/Users/ユーザー名` / Windows `C:\Users\ユーザー名`）を示します。*
