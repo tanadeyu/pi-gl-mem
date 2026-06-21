@@ -81,12 +81,6 @@ project/
 pi install https://github.com/tanadeyu/pi-local-memo0
 ```
 
-### 手順B: ローカルファイルから
-
-```bash
-pi install ./pi-gl-mem.ts
-```
-
 ### 初期化
 
 新しいプロジェクトでは `pi-gl-mem-init` を実行します：
@@ -102,7 +96,7 @@ pi-gl-mem-init
 .pi-gl-mem/
 ```
 
-### アンインストール
+## アンインストール
 
 ```bash
 pi uninstall https://github.com/tanadeyu/pi-local-memo0
