@@ -1,8 +1,8 @@
 {
-  "name": "pi-local-mem",
+  "name": "@tanadeyu/pi-gl-mem",
   "version": "1.0.0",
-  "description": "Project-local memory extension for pi coding agent — independent, self-contained, zero dependency on pi-mem",
-  "main": "pi-local-mem.ts",
+  "description": "Global + project-local memory extension for pi coding agent — independent, self-contained, zero dependency on pi-mem",
+  "main": "pi-gl-mem.ts",
   "type": "module",
   "keywords": [
     "pi-package",
@@ -15,15 +15,18 @@
   "author": "tanadeyu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tanadeyu/pi-local-mem.git"
+    "url": "https://github.com/tanadeyu/pi-local-memo0"
   },
   "bugs": {
-    "url": "https://github.com/tanadeyu/pi-local-mem/issues"
+    "url": "https://github.com/tanadeyu/pi-local-memo0/issues"
   },
-  "homepage": "https://github.com/tanadeyu/pi-local-mem#readme",
+  "homepage": "https://github.com/tanadeyu/pi-local-memo0#readme",
+  "bin": {
+    "pi-gl-mem-init": "./pi-gl-mem-init.sh"
+  },
   "pi": {
     "extensions": [
-      "./pi-local-mem.ts"
+      "./pi-gl-mem.ts"
     ]
   },
   "publishConfig": {
