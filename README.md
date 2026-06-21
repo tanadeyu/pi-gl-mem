@@ -136,6 +136,12 @@ mv pi_memory_local.json pi_gl_settings.json
 - [`pi-gl-mem仕様書/pi-gl-mem仕様書01.md`](pi-gl-mem仕様書/pi-gl-mem仕様書01.md) — 基本設計書
 - [`pi-gl-mem仕様書/old/`](pi-gl-mem仕様書/old/) — 旧 pi-local-mem 仕様書（参考）
 
+## 注意事項
+
+### 同時書き込みについて
+
+グローバル記憶（`~/.pi/agent/pi-gl-mem/MEMORY.md`）は単一ファイルです。複数の pi プロセス（マルチターミナル・マルチエージェント）から同時に書き込むと競合が発生する可能性があります。通常の開発フローでは問題になりませんが、意図的に複数セッションを同時運用する場合はご注意ください。
+
 ## 動作確認環境
 
 - pi: 0.79.8

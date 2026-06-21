@@ -28,5 +28,19 @@ cat > "$DIR/pi_gl_settings.json" <<'EOF'
 {"injectLocal":true,"injectGlobal":true}
 EOF
 
+# .gitignore に .pi-gl-mem/ がなければ追記
+GITIGNORE=".gitignore"
+if [ -f "$GITIGNORE" ]; then
+  if ! grep -qxF "$DIR" "$GITIGNORE"; then
+    echo "" >> "$GITIGNORE"
+    echo "# pi-gl-mem local memory" >> "$GITIGNORE"
+    echo "$DIR" >> "$GITIGNORE"
+    echo "📝 $GITIGNORE に $DIR を追記しました"
+  fi
+else
+  echo "$DIR" > "$GITIGNORE"
+  echo "📝 $GITIGNORE を作成し $DIR を追記しました"
+fi
+
 echo "✅ $DIR を作成しました。"
 echo "   daily/ notes/ MEMORY.md SCRATCHPAD.md pi_gl_settings.json"
