@@ -90,11 +90,11 @@ pi-gl-mem-init
 # → .pi-gl-mem/ が作成される（Y/N確認あり）
 ```
 
-必要に応じて `.gitignore` に追記：
-
-```
-.pi-gl-mem/
-```
+> 📌 **注意**: `.gitignore` に `.pi-gl-mem/` を追記することを推奨します（自動では変更しません）。
+>
+> ```bash
+> echo ".pi-gl-mem/" >> .gitignore
+> ```
 
 ## アンインストール
 

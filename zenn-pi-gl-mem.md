@@ -74,7 +74,7 @@ your-project/.pi-gl-mem/
   └── pi_gl_settings.json # 設定
 ```
 
-`.gitignore` への追記は推奨しますが、自動では変更しません。必要に応じて手動で追加してください。
+> 📌 **注意**: `.gitignore` への追記は推奨しますが、自動では変更しません。必要に応じて手動で追加してください。
 
 ```
 echo ".pi-gl-mem/" >> .gitignore
