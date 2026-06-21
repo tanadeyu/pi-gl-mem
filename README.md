@@ -139,8 +139,8 @@ mv pi_memory_local.json pi_gl_settings.json
 ## ドキュメント
 
 - [`pi-gl-mem解説書.md`](pi-gl-mem解説書.md) — ソースコードの初心者向け解説
-- [`pi-local-mem仕様書/pi-gl-mem仕様書01.md`](pi-local-mem仕様書/pi-gl-mem仕様書01.md) — 基本設計書
-- [`pi-local-mem仕様書/old/`](pi-local-mem仕様書/old/) — 旧 pi-local-mem 仕様書（参考）
+- [`pi-gl-mem仕様書/pi-gl-mem仕様書01.md`](pi-gl-mem仕様書/pi-gl-mem仕様書01.md) — 基本設計書
+- [`pi-gl-mem仕様書/old/`](pi-gl-mem仕様書/old/) — 旧 pi-local-mem 仕様書（参考）
 
 ## 動作確認環境
 
