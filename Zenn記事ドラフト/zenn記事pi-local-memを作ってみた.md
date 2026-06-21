@@ -70,7 +70,7 @@ pi install ./pi-local-mem.ts
 
 たったこれだけです。`pi install` は参照登録のみでコピーは作らないので、元ファイルは削除・移動しないでください。
 
-**pi-mem と併用する場合**：両方インストールするときは `pi-mem → pi-local-mem` の順番になるよう注意してください。すでに pi-local-mem を入れていて後から pi-mem を追加する場合は、一度 `pi uninstall pi-local-mem` してから pi-mem → pi-local-mem の順で入れ直すと確実です。順番が逆だとコンテキストの注入順序がおかしくなり、正しく動作しない可能性があります。
+**pi-mem と併用する場合**：両方インストールするときは `pi-mem → pi-local-mem` の順番になるよう注意してください。すでに pi-local-mem を入れていて後から pi-mem を追加する場合は、一度 `pi uninstall https://github.com/tanadeyu/pi-local-mem` してから pi-mem → pi-local-mem の順で入れ直すと確実です。順番が逆だとコンテキストの注入順序がおかしくなり、正しく動作しない可能性があります。
 
 ## 使い方
 

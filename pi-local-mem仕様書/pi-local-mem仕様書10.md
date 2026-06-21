@@ -10,7 +10,7 @@
 - packages 順序は `npm:@haha1903/pi-mem` → `pi-local-mem.ts` の順を前提（pi-mem が前でないと後段フィルタが効かない）。
 ### 方法A（推奨）: GitHub リポジトリ直指定
 ```bash
-pi uninstall pi-local-mem        # 既存登録の除去
+pi uninstall https://github.com/tanadeyu/pi-local-mem  # 既存登録の除去
 pi install https://github.com/tanadeyu/pi-local-mem
 ```
 元ファイルの削除・移動制限なし。GitHub上の package.json を参照して拡張機能をロードする。
@@ -152,8 +152,8 @@ pi-mem/lib.ts の以下関数と **同一ロジック** を内部にコピー持
  * 【安全性・競合リスクゼロについて】
  * 他プラグインのコードを書き換えない「完全外付け型」の非破壊設計。
  * 【1. インストール方法】
- *   $ pi uninstall pi-local-mem        # 既存登録の除去（参照先変更時・再インストール時に必須）
- *   $ pi install ./pi-local-mem.ts
+ *   $ pi uninstall https://github.com/tanadeyu/pi-local-mem  # 既存登録の除去
+ *   $ pi install https://github.com/tanadeyu/pi-local-mem
  * ※pi install は参照登録のみ。インストール後も元ファイルは削除・移動不可。
  * ※参照先を変える際は install 単独だと旧エントリが残ることがあるため、一度 uninstall してから install すること。
  * 【2. 使い方】
@@ -162,7 +162,7 @@ pi-mem/lib.ts の以下関数と **同一ロジック** を内部にコピー持
  * .pi-local-mem/pi_memory_local.json の "injectGlobal": false で、pi-mem が注入する <pi-mem-injected> を
  * 送信前に除去（後段 context フィルタ方式）。packages 順序で pi-mem が pi-local-mem より前であることが前提。
  * 【4. アンインストール】
- *   A. $ pi uninstall pi-local-mem
+ *   A. $ pi uninstall https://github.com/tanadeyu/pi-local-mem
  *   B. 手動クリーンアップ: $ rm -rf ./.pi-local-mem
  */
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
