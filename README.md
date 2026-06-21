@@ -78,7 +78,7 @@ project/
 ### 手順A: GitHub から直接インストール（推奨）
 
 ```bash
-pi install https://github.com/tanadeyu/pi-local-memo0
+pi install https://github.com/tanadeyu/pi-gl-mem
 ```
 
 ### 初期化
@@ -99,7 +99,7 @@ pi-gl-mem-init
 ## アンインストール
 
 ```bash
-pi uninstall https://github.com/tanadeyu/pi-local-memo0
+pi uninstall https://github.com/tanadeyu/pi-gl-mem
 rm -rf ./.pi-gl-mem   # データも削除する場合
 ```
 

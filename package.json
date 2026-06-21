@@ -15,12 +15,12 @@
   "author": "tanadeyu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tanadeyu/pi-local-memo0"
+    "url": "https://github.com/tanadeyu/pi-gl-mem"
   },
   "bugs": {
-    "url": "https://github.com/tanadeyu/pi-local-memo0/issues"
+    "url": "https://github.com/tanadeyu/pi-gl-mem/issues"
   },
-  "homepage": "https://github.com/tanadeyu/pi-local-memo0#readme",
+  "homepage": "https://github.com/tanadeyu/pi-gl-mem#readme",
   "bin": {
     "pi-gl-mem-init": "./pi-gl-mem-init.sh"
   },
