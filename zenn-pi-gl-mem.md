@@ -61,8 +61,11 @@ rm -rf ./.pi-gl-mem   # データも残るので不要なら削除
 ```
 
 ### 初期化（プロジェクトごとに1回）
+プロジェクトルートで以下のコマンドを実行します：
+
 ```bash
-pi-gl-mem-init   # Y/N確認 → .pi-gl-mem/ を作成
+bash ~/.pi/agent/git/github.com/tanadeyu/pi-gl-mem/pi-gl-mem-init.sh
+# → Y/N確認 → .pi-gl-mem/ を作成
 ```
 
 ```
